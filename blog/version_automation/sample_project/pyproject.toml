@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "sample-project"
+version = "0.1.0"
+description = ""
+authors = ["SanjayaElvitigala <elvitigalasanjaya@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.develop.dependencies]
+python-semantic-release = "9.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
