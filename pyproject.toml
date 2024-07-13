@@ -8,13 +8,13 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "3.10"
 pandas = "2.2.2"
-torch = "2.2.2"
 seaborn = "0.13.2"
 sktime = "0.28.0"
 lightgbm = "4.3.0"
 statsmodels = "0.14.1"
 spacy = "3.7.4"
 nltk = "3.8.1"
+
 
 
 [tool.poetry.group.dev.dependencies]
