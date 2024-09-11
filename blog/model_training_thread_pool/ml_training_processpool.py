@@ -63,10 +63,10 @@ if __name__ == "__main__":
     models_cluster = ModelWrapper(
         targets=Y_cols,
         features=X_cols,
-        is_parallel=False,
+        is_parallel=True,
         data=all_data,
         executor="processpool",
-        lgb_njobs=None,
+        lgb_njobs=1,
     )
 
     models_cluster.train(6)
