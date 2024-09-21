@@ -19,6 +19,7 @@ gcloud = "^0.18.3"
 gspread = "^6.1.2"
 python-dotenv = "^1.0.1"
 aiohttp = "^3.10.5"
+flask = "^3.0.3"
 
 
 
