@@ -15,6 +15,11 @@ statsmodels = "0.14.1"
 spacy = "3.7.4"
 nltk = "3.8.1"
 matplotlib = "3.9.2"
+gcloud = "^0.18.3"
+gspread = "^6.1.2"
+python-dotenv = "^1.0.1"
+aiohttp = "^3.10.5"
+flask = "^3.0.3"
 
 
 
