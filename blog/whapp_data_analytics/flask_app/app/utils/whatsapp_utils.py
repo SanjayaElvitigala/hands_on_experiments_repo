@@ -30,8 +30,12 @@ def generate_response(response):
     # Return text in uppercase
     if response.lower() == "last month":
         return gsheet_analysis()
-    elif 'date' in response:
-        return update_gsheet(response)
+    elif "date" in response:
+        try:
+            return update_gsheet(response)
+        except Exception as e:
+            print(e)
+            return str(e)
     else:
         return response.lower()
 

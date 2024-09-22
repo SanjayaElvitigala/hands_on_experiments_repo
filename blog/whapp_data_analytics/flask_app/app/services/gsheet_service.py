@@ -38,7 +38,11 @@ def update_gsheet(response):
     client = authorize_gsheet_api()
     worksheet = get_worksheet(client)
 
-    cols_row = int(worksheet.cell(row=1, col=1).value)
+    # extracting which row belongs to column names and from which row onwards data starts
+    cols_row, data_st_row, n_cols = list(
+        map(int, worksheet.cell(row=1, col=1).value.split(","))
+    )
+
     col_values = worksheet.row_values(cols_row)
     cols_values = {col: i for i, col in enumerate(col_values)}
 
@@ -105,15 +109,19 @@ def gsheet_analysis():
     # Convert it into a pandas DataFrame
     df = pd.DataFrame(data[1:], columns=data[0])
 
-    cols_row = int(worksheet.cell(row=1, col=1).value)
+    # extracting which row belongs to column names and from which row onwards data starts
+    cols_row, data_st_row, n_cols = list(
+        map(int, worksheet.cell(row=1, col=1).value.split(","))
+    )
 
-    filtered_needed_df = df.iloc[(cols_row - 1) :]
-    filtered_needed_df.columns = df.iloc[
-        6
-    ].values  # changing the column name in the freezed rows
-    filtered_needed_df = filtered_needed_df[
-        df.iloc[6].values[:7]
-    ]  # getting only needed columns
+    # adjusting the row numbers to match with python zero index
+    cols_row, data_st_row = cols_row - 2, data_st_row - 2
+
+    filtered_needed_df = df.iloc[data_st_row:]
+    # changing the column name in the freezed rows
+    filtered_needed_df.columns = df.iloc[cols_row].values
+    # getting only needed columns
+    filtered_needed_df = filtered_needed_df[df.iloc[cols_row].values[:n_cols]]
     filtered_needed_df.columns = [
         "transaction_date",
         "description",
@@ -124,7 +132,7 @@ def gsheet_analysis():
         "debits",
     ]  # renaming cols as needed
     filtered_needed_df["transaction_date"] = pd.to_datetime(
-        filtered_needed_df["transaction_date"]
+        filtered_needed_df["transaction_date"], format="mixed"
     )
     filtered_needed_df = filtered_needed_df.sort_values("transaction_date")
     filtered_needed_df[["dollars", "salary", "credits", "in_hand", "debits"]] = (

@@ -90,5 +90,5 @@ target/
 
 # Exlcude the database file
 .db
-blog/whapp_data_analytics/credentials.json
+blog/whapp_data_analytics/test_files/credentials.json
 blog/whapp_data_analytics/flask_app/credentials.json
