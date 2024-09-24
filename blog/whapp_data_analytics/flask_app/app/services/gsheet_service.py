@@ -53,6 +53,10 @@ def update_gsheet(response):
     updating_row_lst = []
     for col, index in cols_values.items():
         value = organize_response.get(col)
+
+        if (col not in ["description", "date"]) and not (value is None):
+            value = float(value)
+
         updating_row_lst.append(value)
 
     worksheet.append_row(updating_row_lst)
