@@ -68,7 +68,7 @@ target/
 .idea
 
 # VS Code
-.vscode/
+
 *.code-workspace
 
 # Spyder
@@ -92,3 +92,4 @@ target/
 .db
 blog/whapp_data_analytics/test_files/credentials.json
 blog/whapp_data_analytics/flask_app/credentials.json
+analytics_app/discord_bot/credentials.json
