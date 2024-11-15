@@ -1,21 +1,12 @@
+from flask import Flask,request,jsonify
 import os
-from flask import Flask, jsonify, request, abort
-from mangum import Mangum
-from asgiref.wsgi import WsgiToAsgi
-
 from discord_interactions import verify_key_decorator
-from dotenv import load_dotenv
 
 app = Flask(__name__)
-asgi_app = WsgiToAsgi(app)
-handler = Mangum(asgi_app)
 
-load_dotenv()
 DISCORD_PUBLIC_KEY = os.getenv("DISCORD_PUBLIC_KEY")
-
 @app.route("/interactions", methods=["POST"])
-async def interactions():
-    print(f"👉 Request: {request.json}")
+def index():
     raw_request = request.json
     return interact(raw_request)
 
@@ -38,5 +29,6 @@ def interact(raw_request):
 
     return jsonify(response_data)
 
+
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run()
