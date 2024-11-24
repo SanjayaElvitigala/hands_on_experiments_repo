@@ -1,3 +1,7 @@
 - name: last_month
-  type: 1
   description: last month expenditures!
+  options:
+    - name: message
+      description: The message to echo back.
+      type: 3 # string
+      required: true
